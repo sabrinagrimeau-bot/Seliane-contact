@@ -167,17 +167,28 @@
       Enregistrez mes coordonnées directement dans vos contacts 📲
     </p>
 
-    <a class="btn" href="https://raw.githubusercontent.com/sabrinagrimeau-bot/Seliane-contact/main/Seliane_carte_de_visite.vcf" download="Seliane_carte_de_visite.vcf">
+    <button class="btn" onclick="downloadVCF()">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/>
       </svg>
       Ajouter à mes contacts
-    </a>
+    </button>
+
+    <script>
+      function downloadVCF() {
+        const vcf = `BEGIN:VCARD\nVERSION:3.0\nN:GRIMEAU;Sabrina;;;\nFN:Sabrina GRIMEAU\nORG:Séliane Growth Consulting\nTITLE:Consultante RH\nTEL;TYPE=CELL:+596696672620\nEMAIL:contact@selianegrowth.fr\nURL:https://linktr.ee/nomduprofile\nNOTE:Séliane Growth Consulting est un cabinet de conseil RH spécialisé en stratégie humaine et QVCT.\nEND:VCARD`;
+        const blob = new Blob([vcf], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Seliane_carte_de_visite.vcf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    </script>
 
     <p class="info">
       Consultante RH · QVCT · Martinique<br/>
-      <a href="mailto:contact@selianegrowth.fr">contact@selianegrowth.fr</a>
-    </p>
-  </div>
-</body>
-</html>
+      <a href="/cdn-cgi/l/email-protection#51323e3f253032251122343d38303f3436233e2625397f3723"><span class="__c
